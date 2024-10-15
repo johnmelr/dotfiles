@@ -1,0 +1,2 @@
+g++ -c -std=c++17 -I/usr/local/include/i3-ipc++ auto_scratch.cpp
+g++ -static -L/usr/local/lib/i3-ipc++ auto_scratch.o -o auto_scratch -li3-ipc++

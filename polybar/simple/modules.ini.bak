@@ -1,0 +1,215 @@
+;=============================================================================
+[module/launcher]
+type=custom/text
+content="󰣇 "
+content-padding = 2
+click-left = exec rofi -show drun -show-icons
+content-foreground = ${catppuccin.blue}
+content-background = ${catppuccin.base}
+
+;=============================================================================
+[module/i3]
+type=internal/i3
+
+strip-wsnumbers = true
+show-urgent = true
+
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = true
+
+ws-icon-0 = 11; 
+ws-icon-1 = 12; 
+ws-icon-2 = 1;1
+ws-icon-3 = 2;2
+ws-icon-4 = 3;3
+ws-icon-5 = 4;4
+ws-icon-6 = 5;5
+ws-icon-7 = 6;6
+ws-icon-8 = 7;7
+ws-icon-9 = 8;8
+ws-icon-10 = 9;9
+ws-icon-11 = 10;10
+ws-icon-12 = 13;
+ws-icon-13 = 14;
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+
+; focused
+label-focused = %icon%
+label-focused-foreground = ${catppuccin.mantle}
+label-focused-background = ${catppuccin.blue}
+label-focused-padding = 2
+
+; unfocused
+label-unfocused = %icon%
+label-unfocused-padding = 2
+label-unfocused-foreground = ${catppuccin.surface2}
+label-unfocused-background = ${catppuccin.blue}
+
+; visible
+label-visible = %icon%
+label-visible-padding = 2
+label-visbile-background = ${catppuccin.blue}
+
+; urgent change color to red
+label-urgent = %icon%
+label-urgent-foreground = ${catppuccin.red}
+label-urgent-background = ${catppuccin.blue}
+label-urgent-padding = 2
+
+
+;=============================================================================
+[module/xwindow]
+type = internal/xwindow
+
+label = %title:0:60:...%
+label-maxlen = 60
+label-padding = 2
+
+label-empty = "Arch Linux"
+label-empty-padding = 2
+
+;=============================================================================
+[module/audio]
+type = internal/pulseaudio
+
+interval = 2
+
+; format-volume-prefix = "  " 
+; format-volume-prefix-foreground = ${catppuccin.blue}
+format-volume = <ramp-volume> <label-volume>
+
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
+ramp-volume-3 = 
+ramp-volume-padding-left = 1
+
+label-volume = " %percentage%"
+label-volume-padding-right = 1
+
+ramp-volume-foreground = ${catppuccin.blue}
+
+label-muted = 󰝟  Muted
+label-muted-foreground = ${catppuccin.red}
+label-muted-padding = 2
+
+click-right = pavucontrol
+
+;=============================================================================
+[module/date]
+type = internal/date
+interval = 1
+
+date = %a %y %b %d %I:%M %p
+date-alt = %Y-%m-%d %H:%M:%S
+
+label = 󰃭  %date%
+label-foreground = ${catppuccin.text}
+label-padding = 1
+
+;=============================================================================
+[module/battery]
+type = internal/battery
+
+low-at = 15
+
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 5
+
+; charging
+format-charging = <ramp-capacity> <label-charging>
+label-charging = %percentage%%
+label-charging-padding-right = 1
+; full
+label-full = "  %percentage%%"
+label-full-foreground = ${catppuccin.green}
+label-full-padding-right = 1
+; Disconnected
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+label-discharging-padding-right = 1
+; low battery
+format-low = <ramp-capacity> <label-low>
+label-low = %percentage%% 
+label-low-foreground = ${catppuccin.red}
+label-low-padding-right = 1
+
+; Ramp capacity
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  " 
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  " 
+ramp-capacity-4 = "  " 
+ramp-capacity-padding-left = 1
+
+;=============================================================================
+[module/powerprofile]
+type = custom/script
+
+exec = /home/yovhanne/.config/polybar/scripts/powerprofiles.sh
+
+format = <label>
+format-padding = 1
+
+;=============================================================================
+# [module/backlight]
+# type = custom/script
+# 
+# exec = /home/yovhanne/.local/bin/brightness
+# 
+# format = <label>
+# format-padding = 1
+# format-prefix = "󰃠  "
+# format-prefix-foreground = ${catppuccin.yellow}
+# label = %output%
+# 
+# tail = true
+# 
+# scroll-up = /home/yovhanne/.local/bin/brightness increase 5
+# scroll-down = /home/yovhanne/.local/bin/brightness decrease 5
+
+[module/backlight]
+
+type = internal/backlight
+
+card = amdgpu_bl0
+
+use-actual-brightness = true
+
+enable-scroll = true
+
+format = <ramp> <label>
+ramp-foreground = ${catppuccin.yellow}
+
+label = %percentage%
+label-padding = 1
+
+ramp-0 = 󰃞
+ramp-1 = 󰃟
+ramp-2 = 󰃝
+ramp-3 = 󰃠
+
+;=============================================================================
+[network-base]
+type = internal/network
+interval = 2
+format-connected = <label-connected>
+format-connected-padding = 1
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 1
+
+[module/wlan]
+inherit = network-base
+interface-type = wireless
+label-connected = %{F#cba6f7}󰖩 %{F-}
+
+[module/eth]
+inherit = network-base
+interface-type = wired
+label-connected = %{F#cba6f7}󰈀 %{F-} %local_ip%
