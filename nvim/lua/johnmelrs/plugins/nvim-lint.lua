@@ -11,8 +11,8 @@ return {
     require('lint').linters_by_ft = {
       ["*"] = { "cspell" },
       bash = { "shellcheck" },
-      javascript = { "eslint" },
-      typescript = { "eslint" },
+      javascript = { "eslint_d" },
+      typescript = { "eslint_d" },
       python = { "pylint" },
       markdown = { 'vale' },
     }

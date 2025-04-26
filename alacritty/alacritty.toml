@@ -1,4 +1,7 @@
-import = ["/home/johnmelrs/.config/alacritty/catppuccin/catppuccin-mocha.yml"]
+import = [
+    # "/home/johnmelrs/.config/alacritty/catppuccin-mocha.toml"
+    "/home/johnmelrs/.config/alacritty/alacritty-themes/themes/kanagawa_wave"
+  ]
 
 [env]
 TERM = "xterm-256color"
@@ -8,4 +11,5 @@ x = 24
 y = 24
 
 [font]
-size = 7.5 
+size = 10
+normal = { family = "FiraCode Nerd Font" }
